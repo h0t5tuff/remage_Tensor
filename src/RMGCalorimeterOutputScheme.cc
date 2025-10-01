@@ -150,6 +150,7 @@ void RMGCalorimeterOutputScheme::StoreEvent(const G4Event* event) {
 
     for (auto hit : *hit_coll->GetVector()) {
 
+      // return if no energy is deposited
       if (!hit or (hit->energy_deposition == 0)) continue;
 
       hit->Print();

@@ -267,16 +267,17 @@ def get_reboost_config(
     }
     config["processing_groups"] = [default_config]
 
-    # special treatment for the calorimeter output scheme
-    calo_config = copy.deepcopy(default_config)
-    calo_config["name"] = "RMGCalorimeterOutputScheme"
-    calo_config["detector_mapping"] = [
-        {"output": table} for table in detector_info["RMGCalorimeterOutputScheme"]
-    ]
-    # there is always one energy per event, then remove one dimension from the array
-    calo_config["operations"]["edep"] = "ak.ravel(HITS.edep)"
+    if "RMGCalorimeterOutputScheme" in detector_info:
+        # special treatment for the calorimeter output scheme
+        calo_config = copy.deepcopy(default_config)
+        calo_config["name"] = "RMGCalorimeterOutputScheme"
+        calo_config["detector_mapping"] = [
+            {"output": table} for table in detector_info["RMGCalorimeterOutputScheme"]
+        ]
+        # there is always one energy per event, then remove one dimension from the array
+        calo_config["operations"]["edep"] = "ak.ravel(HITS.edep)"
 
-    config["processing_groups"].append(calo_config)
+        config["processing_groups"].append(calo_config)
 
     # forward other tables as they are
     config["forward"] = [v for vals in detector_info_aux.values() for v in vals]

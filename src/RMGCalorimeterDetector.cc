@@ -57,7 +57,6 @@ bool RMGCalorimeterDetector::ProcessHits(G4Step* step, G4TouchableHistory* /*his
 
   RMGLog::OutDev(RMGLog::debug, "Processing calorimeter hits");
 
-  // return if no energy is deposited
   // ignore optical photons
   if (step->GetTrack()->GetDefinition() == G4OpticalPhoton::OpticalPhotonDefinition()) return false;
 
@@ -89,7 +88,7 @@ bool RMGCalorimeterDetector::ProcessHits(G4Step* step, G4TouchableHistory* /*his
     _hit->energy_deposition = 0;
     fHitsCollection->insert(_hit);
   }
-  auto* hit = dynamic_cast<RMGDetectorHit*>(fHitsCollection->GetHit(0));
+  auto* hit = (RMGDetectorHit*)(fHitsCollection->GetHit(0));
 
   hit->physical_volume = pv;
   hit->detector_uid = det_uid;
