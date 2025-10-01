@@ -162,7 +162,7 @@ void RMGCalorimeterOutputScheme::StoreEvent(const G4Event* event) {
         ana_man->FillNtupleIColumn(ntupleid, col_id++, hit->detector_uid);
       }
 
-      FillNtupleDColumn(ana_man, ntupleid, col_id++, hit->energy_deposition / u::keV);
+      ana_man->FillNtupleDColumn(ntupleid, col_id++, hit->energy_deposition / u::keV);
       ana_man->FillNtupleDColumn(ntupleid, col_id++, hit->global_time / u::ns);
 
       // NOTE: must be called here for hit-oriented output
