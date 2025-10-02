@@ -88,7 +88,7 @@ bool RMGCalorimeterDetector::ProcessHits(G4Step* step, G4TouchableHistory* /*his
     _hit->energy_deposition = 0;
     fHitsCollection->insert(_hit);
   }
-  auto* hit = (RMGDetectorHit*)(fHitsCollection->GetHit(0));
+  auto* hit = static_cast<RMGDetectorHit*>(fHitsCollection->GetHit(0));
 
   hit->physical_volume = pv;
   hit->detector_uid = det_uid;

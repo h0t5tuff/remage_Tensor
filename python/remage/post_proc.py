@@ -43,8 +43,8 @@ def post_proc(
     }
 
     # these are mappings: <output scheme name> -> [<table name 1>, <table name 2>, ...]
-    detector_info = utils._icp_to_dict(ipc_info.get("output_ntuple", 2))
-    detector_info_aux = utils._icp_to_dict(ipc_info.get("output_ntuple_aux", 2))
+    detector_info = ipc_info.get_as_dict("output_ntuple", 2)
+    detector_info_aux = ipc_info.get_as_dict("output_ntuple_aux", 2)
 
     assert len(output_file_exts) == 1
 
@@ -269,11 +269,11 @@ def get_reboost_config(
 
     if "RMGCalorimeterOutputScheme" in detector_info:
         # special treatment for the calorimeter output scheme
+        tables = detector_info["RMGCalorimeterOutputScheme"]
+
         calo_config = copy.deepcopy(default_config)
         calo_config["name"] = "RMGCalorimeterOutputScheme"
-        calo_config["detector_mapping"] = [
-            {"output": table} for table in detector_info["RMGCalorimeterOutputScheme"]
-        ]
+        calo_config["detector_mapping"] = [{"output": table} for table in tables]
         # there is always one energy per event, then remove one dimension from the array
         calo_config["operations"]["edep"] = "ak.ravel(HITS.edep)"
 
