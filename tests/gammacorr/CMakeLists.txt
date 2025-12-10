@@ -15,5 +15,5 @@ set_tests_properties(gammacorr/pytest-all PROPERTIES LABELS "mt;extra" ENVIRONME
                                                      MPLCONFIGDIR=${CMAKE_SOURCE_DIR}/tests)
 
 if(Geant4_VERSION VERSION_LESS "11.3.0")
-  set_tests_properties(gammacorr/pytest-all DISABLED)
+  set_tests_properties(gammacorr/pytest-all PROPERTIES DISABLED True)
 endif()
