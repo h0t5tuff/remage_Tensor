@@ -14,6 +14,6 @@ add_test(NAME gammacorr/pytest-all COMMAND ${PYTHONPATH} -m pytest -s -vvv .)
 set_tests_properties(gammacorr/pytest-all PROPERTIES LABELS "mt;extra" ENVIRONMENT
                                                      MPLCONFIGDIR=${CMAKE_SOURCE_DIR}/tests)
 
-if(Geant4_VERSION VERSION_LESS_EQUAL "11.2.0")
+if(Geant4_VERSION VERSION_LESS "11.3.0")
   set_tests_properties(gammacorr/pytest-all DISABLED)
 endif()
