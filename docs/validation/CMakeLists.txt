@@ -113,6 +113,9 @@ set(TESTS_IMAGES
     observables/beta-observables.surf-max-z.spec.output.png
     gammacorr/gamma-angular-distribution-27-60.output.png
     gammacorr/gamma-angular-distribution-81-208.output.png)
+    processes/innerbrem-gamma-vertex-energy.output.png
+    processes/innerbrem-signal.output.png
+    processes/innerbrem-difference.output.png)
 
 # cmake-format: on
 

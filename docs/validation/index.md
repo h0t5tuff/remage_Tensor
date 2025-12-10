@@ -19,6 +19,7 @@ distances
 nist
 observables-ge
 gammacorr
+processes-ib
 ```
 
 ```{toctree}
